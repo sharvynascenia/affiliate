@@ -1,0 +1,33 @@
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not copy /var/www/affiliate/core/packages/core/modContext/beada694127e00c7caacf4a6e0e1c2cb/0/ to /var/www/affiliate/index.php
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not copy /var/www/affiliate/core/packages/core/modContext/beada694127e00c7caacf4a6e0e1c2cb/1/ to /var/www/affiliate/ht.access
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) xPDOVehicle resolver failed: type php (/var/www/affiliate/core/packages/core/modContext/beada694127e00c7caacf4a6e0e1c2cb.resolve.core.resolver)
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not resolve vehicle for object of class modContext; criteria: Array
+(
+    [key] => web
+)
+
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not copy /var/www/affiliate/core/packages/core/modContext/0d7cb0d8ebad451b893bcbdea7e63f07/0/ to /var/www/affiliate/manager/assets
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not copy /var/www/affiliate/core/packages/core/modContext/0d7cb0d8ebad451b893bcbdea7e63f07/1/ to /var/www/affiliate/manager/controllers
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not copy /var/www/affiliate/core/packages/core/modContext/0d7cb0d8ebad451b893bcbdea7e63f07/2/ to /var/www/affiliate/manager/templates
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not copy /var/www/affiliate/core/packages/core/modContext/0d7cb0d8ebad451b893bcbdea7e63f07/3/ to /var/www/affiliate/manager/min
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not copy /var/www/affiliate/core/packages/core/modContext/0d7cb0d8ebad451b893bcbdea7e63f07/4/ to /var/www/affiliate/manager/ht.access
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not copy /var/www/affiliate/core/packages/core/modContext/0d7cb0d8ebad451b893bcbdea7e63f07/5/ to /var/www/affiliate/manager/cache.manifest.php
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not copy /var/www/affiliate/core/packages/core/modContext/0d7cb0d8ebad451b893bcbdea7e63f07/6/ to /var/www/affiliate/manager/index.php
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) xPDOVehicle resolver failed: type php (/var/www/affiliate/core/packages/core/modContext/0d7cb0d8ebad451b893bcbdea7e63f07.resolve.core.resolver)
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not resolve vehicle for object of class modContext; criteria: Array
+(
+    [key] => mgr
+)
+
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/ba2b54719b37ebe8e83826d092a5c9bb/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/bbf13f2d73102563bcb0c0f34cd3c128/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/22b0bc8a6c13bf5c5d8d30264cbae4d6/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/2ad7b155e89236583fb9bec7a54614d1/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/30d32c53dad267ac6ea7fa976735cf0a/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/5369d27b37c905f2be49a586fe2c8864/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/5e169ae4a9ff6c08310fab5e7b8e1e4e/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/a148882e26c4e4d3d41f07e707e1f728/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/d83ae06215688224c5abb5c1f2103485/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/609dba858be64c0152d125213d16bf67/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) Could not install files from /var/www/affiliate/core/packages/core/xPDOFileVehicle/fa8a70bb8b4cabeac99edd72a63781c0/ to /var/www/affiliate/connectors/
+[2013-05-16 17:56:55] (ERROR @ /affiliate/setup/index.php) xPDOVehicle resolver failed: type php (/var/www/affiliate/core/packages/core/xPDOFileVehicle/fa8a70bb8b4cabeac99edd72a63781c0.resolve.core.resolver)
