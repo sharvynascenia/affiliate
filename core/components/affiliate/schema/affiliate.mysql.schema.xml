@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="affiliate" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
+    <object class="affiliateAffiliate" table="affiliate" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+        <field key="category_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+        <field key="modx_users_fk" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="active" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="min_deposit" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="founded" dbtype="smallint" precision="6" phptype="integer" null="true" />
+        <field key="payout_percentage" dbtype="float" phptype="float" null="false" />
+        <field key="rating" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="created_time" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="public_live_chat" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="us_player" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+
+        <composite alias="affiliateGameReference" class="affiliateGameReference" local="id" foreign="affiliate_fk" cardinality="many" owner="local"/>
+        <composite alias="affiliateBonus" class="affiliateBonus" local="id" foreign="affiliate_fk" cardinality="many" owner="local"/>
+        <composite alias="affiliateCurrencyReference" class="affiliateCurrencyReference" local="id" foreign="affiliate_fk" cardinality="many" owner="local"/>
+        <aggregate alias="affiliateCategory" class="affiliateCategory" local="category_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <!--<aggregate alias="modxUser" class="modxUser" local="modx_users_fk" foreign="id" cardinality="one" owner="foreign"/>-->
+
+
+
+    </object>
+    <object class="affiliateBonus" table="bonus" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+
+        <field key="bonus_type_fk" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="affiliate_fk" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="currency_fk" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="value" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="value_max" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="percentage" dbtype="float" phptype="float" null="false" />
+        <field key="wager" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="withdraw" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="requirements" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="casinoverdiener" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+
+        <composite alias="affiliateBonusCode" class="affiliateBonusCode" local="id" foreign="bonus_fk" cardinality="many" owner="local"/>
+        <composite alias="affiliateBonusNotQualifying" class="affiliateBonusNotQualifying" local="id" foreign="bonus_fk" cardinality="many" owner="local"/>
+        <aggregate alias="affiliateAffiliate" class="affiliateAffiliate" local="affiliate_fk" foreign="id" cardinality="one" owner="foreign"/>
+    <!--<aggregate alias="modxCurrency" class="modxCurrency" local="currency_fk" foreign="id" cardinality="one" owner="foreign"/>-->
+        <aggregate alias="affiliateBonusType" class="affiliateBonusType" local="bonus_type_fk" foreign="id" cardinality="one" owner="foreign"/>
+
+
+    </object>
+    <object class="affiliateBonusCode" table="bonus_code" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+
+        <field key="bonus_fk" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="country_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+        <field key="bonus_code" dbtype="varchar" precision="255" phptype="string" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+
+        <!--<aggregate alias="modxCurrency" class="modxCurrency" local="currency_fk" foreign="id" cardinality="one" owner="foreign"/>-->
+        <aggregate alias="affiliateBonus" class="affiliateBonus" local="bonus_fk" foreign="id" cardinality="one" owner="foreign"/>
+
+    </object>
+    <object class="affiliateBonusNotQualifying" table="bonus_not_qualifying" extends="xPDOObject">
+        <field key="bonus_fk" dbtype="int" precision="11" phptype="integer" null="false" index="index" />
+        <field key="game_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+
+        <index alias="bonus_fk" name="bonus_fk" primary="false" unique="false" type="BTREE" >
+            <column key="bonus_fk" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="affiliateGame" class="affiliateGame" local="game_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="affiliateBonus" class="affiliateBonus" local="bonus_fk" foreign="id" cardinality="one" owner="foreign"/>
+
+
+    </object>
+
+    <object class="affiliateBonusType" table="bonus_type" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+
+    <composite alias="affiliateBonus" class="affiliateBonus" local="id" foreign="bonus_type_fk" cardinality="many" owner="local" />
+    </object>
+
+    <object class="affiliateCasinoDetails" table="casino_details" extends="xPDOObject">
+        <field key="affiliate_fk" dbtype="int" precision="11" phptype="integer" null="false" index="index" />
+        <field key="software_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+        <field key="license_country_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+        <field key="stock_country_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+        <field key="game_fk" dbtype="smallint" precision="6" phptype="integer" null="true" />
+        <field key="total_games" dbtype="smallint" precision="6" phptype="integer" null="true" />
+        <field key="jackpot" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="download" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="flash_version" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="mac_compatible" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="bet_slots_min" dbtype="decimal" precision="8,2" phptype="float" null="false" />
+        <field key="bet_slots_max" dbtype="decimal" precision="8,2" phptype="float" null="false" />
+        <field key="bet_roulette_min" dbtype="decimal" precision="8,2" phptype="float" null="false" />
+        <field key="bet_roulette_max" dbtype="decimal" precision="8,2" phptype="float" null="false" />
+        <field key="bet_blackjack_min" dbtype="decimal" precision="8,2" phptype="float" null="false" />
+        <field key="bet_blackjack_max" dbtype="decimal" precision="8,2" phptype="float" null="false" />
+
+        <index alias="affiliate_fk" name="affiliate_fk" primary="false" unique="false" type="BTREE" >
+            <column key="affiliate_fk" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="affiliateSoftware" class="affiliateSoftware" local="software_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="affiliateAffiliate" class="affiliateAffiliate" local="affiliate_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="affiliateGame" class="affiliateGame" local="game_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <!--<aggregate alias="licenseCountry" class="licenseCountry" local="license_country_fk" foreign="id" cardinality="one" owner="foreign"/>-->
+        <!--<aggregate alias="StockCountry" class="StockCountry" local="stock_country_fk" foreign="id" cardinality="one" owner="foreign"/>-->
+
+
+    </object>
+    <object class="affiliateCategory" table="category" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+
+        <composite alias="affiliateAffiliate" class="affiliateAffiliate" local="id" foreign="category_fk" cardinality="many" owner="local" />
+    </object>
+
+    <object class="affiliateChange" table="change" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+
+        <field key="affiliate_fk" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="modx_users_fk" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="time" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="change" dbtype="varchar" precision="255" phptype="string" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="affiliateAffiliate" class="affiliateAffiliate" local="affiliate_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <!--<aggregate alias="modxUsers" class="modxUsers" local="modx_users_fk" foreign="id" cardinality="one" owner="foreign"/>-->
+
+
+    </object>
+    <object class="affiliateCurrencyReference" table="currency_reference" extends="xPDOObject">
+        <field key="affiliate_fk" dbtype="int" precision="11" phptype="integer" null="false" index="index" />
+        <field key="currency_fk" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+
+        <index alias="affiliate_fk" name="affiliate_fk" primary="false" unique="false" type="BTREE" >
+            <column key="affiliate_fk" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="affiliateAffiliate" class="affiliateAffiliate" local="affiliate_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <!--<aggregate alias="affiliateCurrency" class="affiliateCurrency" local="currency_fk" foreign="id" cardinality="one" owner="foreign"/>-->
+
+
+    </object>
+
+    <object class="affiliateGame" table="game" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="type" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="progressive" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="live" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+
+        <composite alias="affiliateBonusNotQualifying" class="affiliateBonusNotQualifying" local="id" foreign="game_fk" cardinality="many" owner="local" />
+        <composite alias="affiliateGameReference" class="affiliateGameReference" local="id" foreign="game_fk" cardinality="many" owner="local" />
+        <composite alias="affiliateCasinoDetails" class="affiliateCasinoDetails" local="id" foreign="game_fk" cardinality="many" owner="local" />
+
+    </object>
+    <object class="affiliateGameReference" table="game_reference" extends="xPDOObject">
+        <field key="affiliate_fk" dbtype="int" precision="11" phptype="integer" null="false" index="index" />
+        <field key="game_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+
+        <index alias="affiliate_fk" name="affiliate_fk" primary="false" unique="false" type="BTREE" >
+            <column key="affiliate_fk" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="affiliateAffiliate" class="affiliateAffiliate" local="affiliate_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="affiliateGame" class="affiliateGame" local="game_fk" foreign="id" cardinality="one" owner="foreign"/>
+
+    </object>
+    <object class="affiliateLanguageReference" table="language_reference" extends="xPDOObject">
+        <field key="affiliate_fk" dbtype="int" precision="11" phptype="integer" null="false" index="index" />
+        <field key="language_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+
+        <index alias="affiliate_fk" name="affiliate_fk" primary="false" unique="false" type="BTREE" >
+            <column key="affiliate_fk" length="" collation="A" null="false" />
+        </index>
+        <aggregate alias="affiliateAffiliate" class="affiliateAffiliate" local="affiliate_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <!--<aggregate alias="Language" class="Language" local="language_fk" foreign="id" cardinality="one" owner="foreign"/>-->
+    </object>
+
+    <object class="affiliateLinkReference" table="link_reference" extends="xPDOObject">
+        <field key="affiliate_fk" dbtype="int" precision="11" phptype="integer" null="false" index="index" />
+        <field key="link_type_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+        <field key="language_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+        <field key="url" dbtype="varchar" precision="255" phptype="string" null="false" />
+
+        <index alias="affiliate_fk" name="affiliate_fk" primary="false" unique="false" type="BTREE" >
+            <column key="affiliate_fk" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="affiliateAffiliate" class="affiliateAffiliate" local="affiliate_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="affiliateLinkType" class="affiliateLinkType" local="link_type_fk" foreign="id" cardinality="one" owner="foreign"/>
+
+
+    </object>
+    <object class="affiliateLinkType" table="link_type" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+
+        <composite alias="affiliateLinkReference" class="affiliateLinkReference" local="id" foreign="link_type_fk" cardinality="many" owner="local" />
+
+    </object>
+
+    <object class="affiliatePaymentReference" table="payment_reference" extends="xPDOObject">
+        <field key="affiliate_fk" dbtype="int" precision="11" phptype="integer" null="false" index="index" />
+        <field key="payment_type_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+
+        <index alias="affiliate_fk" name="affiliate_fk" primary="false" unique="false" type="BTREE" >
+            <column key="affiliate_fk" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="affiliateAffiliate" class="affiliateAffiliate" local="affiliate_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="affiliatePaymentType" class="affiliatePaymentType" local="payment_type_fk" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+    <object class="affiliatePaymentType" table="payment_type" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+        <composite alias="affiliatePaymentReference" class="affiliatePaymentReference" local="id" foreign="payment_type_fk" cardinality="many" owner="local" />
+    </object>
+
+    <object class="affiliateSoftware" table="software" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+
+        <composite alias="affiliateCasinoDetails" class="affiliateCasinoDetails" local="id" foreign="software_fk" cardinality="many" owner="local" />
+
+    </object>
+    <object class="affiliateSupport" table="support" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+
+        <field key="affiliate_fk" dbtype="int" precision="11" phptype="integer" null="false" />
+        <field key="language_fk" dbtype="smallint" precision="6" phptype="integer" null="false" />
+        <field key="email" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="phone" dbtype="varchar" precision="255" phptype="string" null="false" />
+        <field key="supports_email" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="supports_fax" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="supports_chat" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+        <field key="supports_phone" dbtype="tinyint" precision="4" phptype="integer" null="false" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true" type="BTREE" >
+            <column key="id" length="" collation="A" null="false" />
+        </index>
+        <aggregate alias="affiliateAffiliate" class="affiliateAffiliate" local="affiliate_fk" foreign="id" cardinality="one" owner="foreign"/>
+        <!--<aggregate alias="language" class="language" local="language_fk" foreign="id" cardinality="one" owner="foreign"/>-->
+
+    </object>
+</model>
