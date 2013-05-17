@@ -5,7 +5,7 @@
 $database_type = 'mysql';
 $database_server = 'localhost';
 $database_user = 'root';
-$database_password = 'root';
+$database_password = '1234';
 $database_connection_charset = 'utf8';
 $dbase = 'basic_affiliate';
 $table_prefix = 'modx_';
